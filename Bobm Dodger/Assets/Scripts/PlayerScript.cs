@@ -7,6 +7,8 @@ public class PlayerScript : MonoBehaviour {
     public float speed = 10f;
     private float minX = -2.55f;
     private float maxX = 2.55f;
+    public GameObject gameOver;
+    public GameObject rstButton;
 
     // Start is called before the first frame update
     void Start()
@@ -48,6 +50,16 @@ public class PlayerScript : MonoBehaviour {
         }
 
         transform.position = currentPosition;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Bomb")
+        {
+            gameOver.gameObject.SetActive(true);
+            rstButton.gameObject.SetActive(true);
+            Time.timeScale = 0f;
+        }
     }
 
 } // end PlayerScript
