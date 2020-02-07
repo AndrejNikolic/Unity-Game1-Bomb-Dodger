@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerScript : MonoBehaviour {
 
     public float speed = 10f;
+    private float minX = -2.55f;
+    private float maxX = 2.55f;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +35,16 @@ public class PlayerScript : MonoBehaviour {
         {
             //going to the left side
             currentPosition.x -= speed * Time.deltaTime;
+        }
+
+        if (currentPosition.x < minX)
+        {
+            currentPosition.x = minX;
+        }
+
+        if (currentPosition.x > maxX)
+        {
+            currentPosition.x = maxX;
         }
 
         transform.position = currentPosition;
